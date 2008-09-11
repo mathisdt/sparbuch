@@ -3,7 +3,7 @@ package org.zephyrsoft.sparbuch.model;
 import java.io.*;
 import java.util.*;
 
-public abstract class Geldbewegung implements Serializable, Comparable<Geldbewegung> {
+public class Buchung implements Serializable, Comparable<Buchung> {
 	
 	private static final long serialVersionUID = 5931839542614942316L;
 	
@@ -13,11 +13,16 @@ public abstract class Geldbewegung implements Serializable, Comparable<Geldbeweg
 	private String text = null;
 	/** Summe der Ein- oder Auszahlung */
 	private double summe = 0.0;
+	/** true wenn dies eine Einzahlung ist */
+	private boolean isEinzahlung;
 	
 	/**
 	 * Default-Konstruktor. Setzt keine Felder.
 	 */
-	public Geldbewegung() {
+	public Buchung() {
+		this.datum = new GregorianCalendar();
+		this.summe = 0.0;
+		this.text = "";
 	}
 	
 	/**
@@ -25,7 +30,7 @@ public abstract class Geldbewegung implements Serializable, Comparable<Geldbeweg
 	 * @param summe
 	 * @param text
 	 */
-	public Geldbewegung(double summe, String text) {
+	public Buchung(double summe, String text) {
 		this.datum = new GregorianCalendar();
 		this.summe = summe;
 		this.text = text;
@@ -37,16 +42,18 @@ public abstract class Geldbewegung implements Serializable, Comparable<Geldbeweg
 	 * @param summe
 	 * @param text
 	 */
-	public Geldbewegung(Calendar datum, double summe, String text) {
+	public Buchung(Calendar datum, double summe, String text) {
 		this.datum = datum;
 		this.summe = summe;
 		this.text = text;
 	}
 
-	public abstract boolean isEinzahlung();
+	public boolean isEinzahlung() {
+		return isEinzahlung;
+	}
 	
-	public boolean isAuszahlung() {
-		return !isEinzahlung();
+	public void setEinzahlung(boolean isEinzahlung) {
+		this.isEinzahlung = isEinzahlung;
 	}
 
 	public Calendar getDatum() {
@@ -80,7 +87,7 @@ public abstract class Geldbewegung implements Serializable, Comparable<Geldbeweg
 		return (this==obj);
 	}
 
-	public int compareTo(Geldbewegung o) {
+	public int compareTo(Buchung o) {
 		if (o==null) {
 			throw new IllegalArgumentException("null ist hier nicht erlaubt");
 		}

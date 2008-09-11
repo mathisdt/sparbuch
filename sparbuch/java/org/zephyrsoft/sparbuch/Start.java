@@ -11,7 +11,7 @@ public class Start {
 		if (args==null || args.length==0) {
 			// keine Datei übergeben, Default verwenden
 			SparbuchSammlung sammlung = SparbuchSammlung.loadFromFile(new File(Constants.DEFAULT_DATA_FILE));
-			new GUI(sammlung, Constants.DEFAULT_DATA_FILE);
+			new GUI(sammlung, null);
 		} else {
 			// übergebenen Dateinamen nehmen
 			SparbuchSammlung sammlung = SparbuchSammlung.loadFromFile(new File(args[0]));

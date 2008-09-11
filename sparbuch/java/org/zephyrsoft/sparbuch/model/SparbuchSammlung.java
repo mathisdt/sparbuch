@@ -3,22 +3,39 @@ package org.zephyrsoft.sparbuch.model;
 import java.io.*;
 import java.util.*;
 
-public class SparbuchSammlung implements Serializable {
+import javax.swing.*;
+import javax.swing.event.*;
+
+public class SparbuchSammlung implements Serializable, ListModel {
 	
 	private static final long serialVersionUID = 5931839542614942316L;
 	
 	private List<Sparbuch> sparbuchSammlung = new ArrayList<Sparbuch>();
+	
+	private transient List<ListDataListener> listeners = new ArrayList<ListDataListener>();
+	
+	public void notifyListeners() {
+		ListDataEvent lde = new ListDataEvent(this, ListDataEvent.CONTENTS_CHANGED, 0, getSize()-1);
+		for (ListDataListener l : listeners) {
+			l.contentsChanged(lde);
+		}
+	}
 
 	public boolean add(Sparbuch e) {
-		return sparbuchSammlung.add(e);
+		boolean ret = sparbuchSammlung.add(e);
+		notifyListeners();
+		return ret;
 	}
 
 	public boolean addAll(Collection<Sparbuch> c) {
-		return sparbuchSammlung.addAll(c);
+		boolean ret = sparbuchSammlung.addAll(c);
+		notifyListeners();
+		return ret;
 	}
 
 	public void clear() {
 		sparbuchSammlung.clear();
+		notifyListeners();
 	}
 
 	public boolean contains(Sparbuch o) {
@@ -30,17 +47,25 @@ public class SparbuchSammlung implements Serializable {
 	}
 
 	public boolean remove(Sparbuch o) {
-		return sparbuchSammlung.remove(o);
+		boolean ret = sparbuchSammlung.remove(o);
+		notifyListeners();
+		return ret;
 	}
 
 	public boolean removeAll(Collection<Sparbuch> c) {
-		return sparbuchSammlung.removeAll(c);
+		boolean ret = sparbuchSammlung.removeAll(c);
+		notifyListeners();
+		return ret;
 	}
 
 	public int size() {
 		return sparbuchSammlung.size();
 	}
 	
+	public Sparbuch get(int index) {
+		return sparbuchSammlung.get(index);
+	}
+
 	/**
 	 * Lädt die SparbuchSammlung aus einer Datei.
 	 *
@@ -81,6 +106,7 @@ public class SparbuchSammlung implements Serializable {
 					throw new IllegalArgumentException("file existiert und ist ein Verzeichnis");
 				}
 			}
+			file.createNewFile();
 			if (!file.canWrite()) {
 				throw new IllegalArgumentException("kann nicht in file schreiben");
 			}
@@ -93,5 +119,27 @@ public class SparbuchSammlung implements Serializable {
 			ex.printStackTrace();
 			return false;
 		}
+	}
+
+	public void addListDataListener(ListDataListener l) {
+		if (listeners==null) {
+			listeners = new ArrayList<ListDataListener>();
+		}
+		listeners.add(l);
+	}
+
+	public Object getElementAt(int index) {
+		return get(index);
+	}
+
+	public int getSize() {
+		return size();
+	}
+
+	public void removeListDataListener(ListDataListener l) {
+		if (listeners==null) {
+			listeners = new ArrayList<ListDataListener>();
+		}
+		listeners.remove(l);
 	}
 }
