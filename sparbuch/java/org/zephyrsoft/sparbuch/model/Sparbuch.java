@@ -17,7 +17,6 @@ public class Sparbuch implements TableModel, Serializable {
 	private static final long serialVersionUID = 5931839542614942316L;
 	
 	private List<Buchung> geldbewegungen = new ArrayList<Buchung>();
-	private double sparbuchStand = 0.0;
 	private String name = null;
 	
 	public void notifyListeners() {
@@ -36,15 +35,18 @@ public class Sparbuch implements TableModel, Serializable {
 	}
 	
 	public double getSparbuchStand() {
+		double sparbuchStand = 0.0;
+		for (Buchung b : geldbewegungen) {
+			if (b.isEinzahlung()) {
+				sparbuchStand += b.getSumme();
+			} else {
+				sparbuchStand -= b.getSumme();
+			}
+		}
 		return sparbuchStand;
 	}
 	
 	public void addGeldbewegung(Buchung e) {
-		if (e.isEinzahlung()) {
-			sparbuchStand += e.getSumme();
-		} else {
-			sparbuchStand -= e.getSumme();
-		}
 		geldbewegungen.add(e);
 		Collections.sort(geldbewegungen);
 	}
@@ -68,11 +70,6 @@ public class Sparbuch implements TableModel, Serializable {
 	}
 
 	public void removeGeldbewegung(Buchung e) {
-		if (e.isEinzahlung()) {
-			sparbuchStand -= e.getSumme();
-		} else {
-			sparbuchStand += e.getSumme();
-		}
 		geldbewegungen.remove(e);
 	}
 

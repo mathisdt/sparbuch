@@ -8,6 +8,7 @@ import java.util.*;
 
 import javax.swing.*;
 import javax.swing.event.*;
+import javax.swing.text.*;
 
 import org.zephyrsoft.sparbuch.*;
 import org.zephyrsoft.sparbuch.model.*;
@@ -206,9 +207,17 @@ public class GUI extends JFrame {
 				}
 			}
 		};
+		FocusListener selectAllListener = new FocusAdapter() {
+			public void focusGained(FocusEvent e) {
+				((JTextComponent)e.getComponent()).selectAll();
+			}
+		};
 		b_datum.addKeyListener(enterListener);
+		b_datum.addFocusListener(selectAllListener);
 		b_text.addKeyListener(enterListener);
+		b_text.addFocusListener(selectAllListener);
 		b_summe.addKeyListener(enterListener);
+		b_summe.addFocusListener(selectAllListener);
 		b_einzahlung.addKeyListener(enterListener);
 		b_auszahlung.addKeyListener(enterListener);
 		
@@ -295,6 +304,7 @@ public class GUI extends JFrame {
 		buchung_dialog.setModal(true);
 		buchung_dialog.setSize(300, 200);
 		buchung_dialog.setLocation((int)(dev[0].getDefaultConfiguration().getBounds().getWidth()/2)-(int)(getSize().getWidth()/2), (int)(dev[0].getDefaultConfiguration().getBounds().getHeight()/2)-(int)(getSize().getHeight()/2));
+		b_datum.requestFocusInWindow();
 		buchung_dialog.setVisible(true);
 	}
 	
