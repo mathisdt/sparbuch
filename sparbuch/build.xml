@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <project default="create_run_jar" name="Create Runnable Jar">
     <target name="create_run_jar">
-        <jar destfile="../sparbuch-packaging/sparbuch.jar" filesetmanifest="mergewithoutmain">
+    	<mkdir dir="build"/>
+        <jar destfile="build/sparbuch.jar" filesetmanifest="mergewithoutmain">
             <manifest>
-                <attribute name="Built-By" value="${user.name}"/>
                 <attribute name="Main-Class" value="org.zephyrsoft.sparbuch.Start"/>
                 <attribute name="Class-Path" value="."/>
             </manifest>
