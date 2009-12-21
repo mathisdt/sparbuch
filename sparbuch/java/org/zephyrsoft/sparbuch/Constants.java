@@ -2,6 +2,10 @@ package org.zephyrsoft.sparbuch;
 
 import java.text.*;
 
+/**
+ * globale Konstanten
+ * @author Mathis Dirksen-Thedens
+ */
 public abstract class Constants {
 	
 	public static final String VERSION = "1.0";

@@ -6,6 +6,10 @@ import java.util.*;
 import javax.swing.*;
 import javax.swing.event.*;
 
+/**
+ * Sammlung von Sparbüchern (Konten)
+ * @author Mathis Dirksen-Thedens
+ */
 public class SparbuchSammlung implements Serializable, ListModel {
 	
 	private static final long serialVersionUID = 5931839542614942316L;

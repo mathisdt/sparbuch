@@ -1,20 +1,18 @@
 package org.zephyrsoft.sparbuch.gui;
 
-import java.awt.*;
-import java.text.*;
-import java.util.*;
+import java.text.DateFormat;
+import java.util.Calendar;
 
-import javax.swing.*;
-import javax.swing.table.*;
+import javax.swing.table.DefaultTableCellRenderer;
 
 /**
  * Renderer für Calendar-Objekte
- * 
  * @author Mathis Dirksen-Thedens
- *
  */
 public class CalendarTableCellRenderer extends DefaultTableCellRenderer {
 
+	private static final long serialVersionUID = 1L;
+	
 	private DateFormat sdf = DateFormat.getDateInstance(DateFormat.SHORT);
 	
 	protected void setValue(Object value) {

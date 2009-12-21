@@ -5,6 +5,10 @@ import java.io.*;
 import org.zephyrsoft.sparbuch.gui.*;
 import org.zephyrsoft.sparbuch.model.*;
 
+/**
+ * Start-Klasse für das Programm
+ * @author Mathis Dirksen-Thedens
+ */
 public class Start {
 	
 	public static void main(String[] args) {

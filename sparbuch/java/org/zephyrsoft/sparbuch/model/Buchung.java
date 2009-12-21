@@ -3,6 +3,10 @@ package org.zephyrsoft.sparbuch.model;
 import java.io.*;
 import java.util.*;
 
+/**
+ * einzelne Buchung eines Sparbuchs (Ein- oder Auszahlung)
+ * @author Mathis Dirksen-Thedens
+ */
 public class Buchung implements Serializable, Comparable<Buchung> {
 	
 	private static final long serialVersionUID = 5931839542614942316L;
