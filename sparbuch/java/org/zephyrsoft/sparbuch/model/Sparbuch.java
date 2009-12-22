@@ -1,18 +1,11 @@
 package org.zephyrsoft.sparbuch.model;
 
-import java.io.Serializable;
-import java.text.MessageFormat;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
-
-import javax.swing.event.TableModelEvent;
-import javax.swing.event.TableModelListener;
-import javax.swing.table.TableModel;
-
-import org.zephyrsoft.sparbuch.Constants;
+import java.io.*;
+import java.text.*;
+import java.util.*;
+import javax.swing.event.*;
+import javax.swing.table.*;
+import org.zephyrsoft.sparbuch.*;
 
 /**
  * Sparbuch (Konto)

@@ -15,40 +15,38 @@ public class Buchung implements Serializable, Comparable<Buchung> {
 	private Calendar datum = null;
 	/** Einzahler oder Auszahlungsempfänger */
 	private String text = null;
-	/** Summe der Ein- oder Auszahlung */
+	/** Summe der Ein- oder Auszahlung: kann explizit auch negativ sein, dann verkehrt sich aber der Sinn von isEinzahlung ins Gegenteil */
 	private double summe = 0.0;
 	/** true wenn dies eine Einzahlung ist */
 	private boolean isEinzahlung;
 	
 	/**
-	 * Default-Konstruktor. Setzt keine Felder.
+	 * Default-Konstruktor.
 	 */
 	public Buchung() {
 		this.datum = new GregorianCalendar();
 		this.summe = 0.0;
+		this.isEinzahlung = true;
 		this.text = "";
 	}
 	
 	/**
 	 * Konstruktor, der das momentane Datum verwendet.
-	 * @param summe
-	 * @param text
 	 */
-	public Buchung(double summe, String text) {
+	public Buchung(double summe, boolean isEinzahlung, String text) {
 		this.datum = new GregorianCalendar();
 		this.summe = summe;
+		this.isEinzahlung = isEinzahlung;
 		this.text = text;
 	}
 	
 	/** 
 	 * Konstruktor, der alle Felder setzt.
-	 * @param datum
-	 * @param summe
-	 * @param text
 	 */
-	public Buchung(Calendar datum, double summe, String text) {
+	public Buchung(Calendar datum, double summe, boolean isEinzahlung, String text) {
 		this.datum = datum;
 		this.summe = summe;
+		this.isEinzahlung = isEinzahlung;
 		this.text = text;
 	}
 

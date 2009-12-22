@@ -1,46 +1,16 @@
 package org.zephyrsoft.sparbuch.gui;
 
-import java.awt.Dimension;
-import java.awt.GraphicsDevice;
-import java.awt.GraphicsEnvironment;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.FocusAdapter;
-import java.awt.event.FocusEvent;
-import java.awt.event.FocusListener;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
-import java.io.File;
-import java.text.ParseException;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
-
-import javax.swing.JButton;
-import javax.swing.JDialog;
-import javax.swing.JFileChooser;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JList;
-import javax.swing.JOptionPane;
-import javax.swing.JRadioButton;
-import javax.swing.JTable;
-import javax.swing.JTextField;
-import javax.swing.ListSelectionModel;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
-import javax.swing.text.JTextComponent;
-
-import org.zephyrsoft.sparbuch.Constants;
-import org.zephyrsoft.sparbuch.model.Buchung;
-import org.zephyrsoft.sparbuch.model.Sparbuch;
-import org.zephyrsoft.sparbuch.model.SparbuchSammlung;
-
-import com.jeta.forms.components.panel.FormPanel;
+import java.awt.*;
+import java.awt.event.*;
+import java.io.*;
+import java.text.*;
+import java.util.*;
+import javax.swing.*;
+import javax.swing.event.*;
+import javax.swing.text.*;
+import com.jeta.forms.components.panel.*;
+import org.zephyrsoft.sparbuch.*;
+import org.zephyrsoft.sparbuch.model.*;
 
 /**
  * Benutzeroberfläche des Programms (Hauptfenster)
@@ -73,19 +43,13 @@ public class GUI extends JFrame {
 	private JButton comp_allesspeichern;
 	private JButton comp_allesladen;
 	private JButton comp_allesneu;
-	@SuppressWarnings("unused")
 	private JLabel label_sparbuecher;
-	@SuppressWarnings("unused")
 	private JLabel label_buchungen;
-	@SuppressWarnings("unused")
 	private JLabel label_aktuellerstand;
 	
 	private JDialog buchung_dialog;
-	@SuppressWarnings("unused")
 	private JLabel b_label_datum;
-	@SuppressWarnings("unused")
 	private JLabel b_label_text;
-	@SuppressWarnings("unused")
 	private JLabel b_label_summe;
 	private JTextField b_datum;
 	private JTextField b_text;
@@ -482,14 +446,12 @@ public class GUI extends JFrame {
 		comp_aktuellerstand.setText((sparbuchSelected!=null ? Constants.CURRENCY_FORMAT.format(sparbuchSelected.getSparbuchStand()) : "0,00 €"));
 	}
 	
-	@SuppressWarnings("unused")
 	private void setSparbuchButtonsEnabled(boolean enabled) {
 		comp_sparbuecher_neu.setEnabled(enabled);
 		comp_sparbuecher_aendern.setEnabled(enabled);
 		comp_sparbuecher_loeschen.setEnabled(enabled);
 	}
 	
-	@SuppressWarnings("unused")
 	private void setBuchungenButtonsEnabled(boolean enabled) {
 		comp_buchungen_neu.setEnabled(enabled);
 		comp_buchungen_aendern.setEnabled(enabled);
